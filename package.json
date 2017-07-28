@@ -1,0 +1,19 @@
+{
+  "name": "filesystem",
+  "version": "1.0.0",
+  "description": "该项目用于直接的对网站的文件进行增删该查",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nightdaysOrg/fileSystem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nightdaysOrg/fileSystem/issues"
+  },
+  "homepage": "https://github.com/nightdaysOrg/fileSystem#readme"
+}
