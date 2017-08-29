@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <div id="menu"></div>
+
+    <script src="jquery.min.js"></script>
+    <script>
+        var options = {
+            url : 'http://localhost:8080/getFileList',
+            success: function(data) {
+                var data = data.children;
+                console.log(data);
+                for(var i=0;i<data.length;i++){
+                    $('#menu').append(`<div>${data[i].name}</div>`);
+                }
+            },
+            error: function(data){
+                console.log(data);
+            }
+        }
+
+        $.ajax(options);
+
+    </script>
+</body>
+
+</html>

@@ -7,7 +7,6 @@ function dirIcon(num, str) {
     return new Array(num*10 + 1).join(str);
 }
 
-let x = 0;
 function recruiveFileAsyn(filePath, index) {
     index++;
     fs.readdirSync(filePath, function (err, files) {
@@ -43,5 +42,11 @@ function recruiveFile(path,parent) {
 }
 
 
-recruiveFile(root+"/test",menu);
-console.log(menu);
+// recruiveFile(root+"/test",menu);
+// console.log(menu);
+
+module.exports = {
+    root : root,
+    menu : menu,
+    recruiveFile : recruiveFile
+}
