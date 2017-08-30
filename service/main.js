@@ -25,7 +25,7 @@ function recruiveFileAsyn(filePath, index) {
     });
 }
 
-let result = fs.readdirSync(root + "/test");
+let result = fs.readdirSync(root);
 let menu = {children:[]};
 function recruiveFile(path,parent) {
     let files = fs.readdirSync(path);
@@ -42,7 +42,7 @@ function recruiveFile(path,parent) {
 }
 
 
-// recruiveFile(root+"/test",menu);
+// recruiveFile(root,menu);
 // console.log(menu);
 
 module.exports = {

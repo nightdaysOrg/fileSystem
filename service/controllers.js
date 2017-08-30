@@ -1,11 +1,11 @@
-let fileDealer = require('../main.js')
+let fileDealer = require('./main.js')
 
 
 let controllers = {
 
     getFileList(req,res){
            let menu = {children:[]};
-        fileDealer.recruiveFile(fileDealer.root+'/test',menu)
+        fileDealer.recruiveFile(fileDealer.root,menu)
         res.send(menu);
     }
 
