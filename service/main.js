@@ -4,7 +4,7 @@ const config = require('./config');
 const root = config.ROOT_DIR;
 
 function dirIcon(num, str) {
-    return new Array(num*10 + 1).join(str);
+    return new Array(num * 10 + 1).join(str);
 }
 
 function recruiveFileAsyn(filePath, index) {
@@ -25,28 +25,47 @@ function recruiveFileAsyn(filePath, index) {
     });
 }
 
-let result = fs.readdirSync(root);
-let menu = {children:[]};
-function recruiveFile(path,parent) {
+//遍历目录下所有文件 耗时很长 不建议使用
+let menu = { children: [] };
+function recruiveFile(path, parent) {
     let files = fs.readdirSync(path);
     files.forEach(function (filename) {
         let fpath = join(path, filename);
         let state = fs.statSync(fpath);
-        let f = {name:filename,path:fpath};
+        let f = { name: filename, path: fpath };
         if (state.isDirectory()) {
             f.children = Array();
-            recruiveFile(fpath,f);
+            recruiveFile(fpath, f);
         }
         parent.children.push(f);
     });
 }
-
-
 // recruiveFile(root,menu);
 // console.log(menu);
 
+//获取目录下直接子文件
+function getFileList(path, parent) {
+    let files = fs.readdirSync(path);
+    files.forEach(function (filename) {
+        let fpath = join(path, filename);
+        try {
+            let state = fs.statSync(fpath);
+            let f = { name: filename, path: fpath , pPath: path };
+            if (state.isDirectory()) {
+                f.type = 'dir';
+                parent.children.push(f);
+            } else {
+                f.type = 'file';
+                parent.children.push(f);
+            }
+        } catch (error) {
+        }
+    });
+}
+
 module.exports = {
-    root : root,
-    menu : menu,
-    recruiveFile : recruiveFile
+    root: root,
+    menu: menu,
+    recruiveFile: recruiveFile,
+    getFileList : getFileList
 }
