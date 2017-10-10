@@ -50,7 +50,7 @@ function getFileList(path, parent) {
         let fpath = join(path, filename);
         try {
             let state = fs.statSync(fpath);
-            let f = { name: filename, path: fpath , pPath: path };
+            let f = { name: filename, path: fpath, pPath: path };
             if (state.isDirectory()) {
                 f.type = 'dir';
                 parent.children.push(f);
@@ -63,9 +63,25 @@ function getFileList(path, parent) {
     });
 }
 
+//删除文件
+function deleteFile(path) {
+    let state = fs.statSync(path);
+    if (state.isDirectory()) {
+        let files = fs.readdirSync(path);
+        for (let f of files) {
+            deleteFile(join(path,f));
+        }
+         fs.rmdirSync(path);
+
+    } else {
+        fs.unlinkSync(path);
+    }
+}
+
 module.exports = {
     root: root,
     menu: menu,
     recruiveFile: recruiveFile,
-    getFileList : getFileList
+    getFileList: getFileList,
+    deleteFile : deleteFile
 }

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nightdaysOrg/fileSystem/issues"
   },
-  "homepage": "https://github.com/nightdaysOrg/fileSystem#readme"
+  "homepage": "https://github.com/nightdaysOrg/fileSystem#readme",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  }
 }
