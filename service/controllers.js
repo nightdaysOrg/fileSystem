@@ -3,6 +3,7 @@ let fileDealer = require('./main.js');
 let cprocess = require('child_process');
 let mysql = require('mysql');
 let connection = mysql.createConnection({
+    // host : '120.24.235.91',
     user: 'root' , 
     password : 'Nuoyadb_1',
     database : 'nightdays_dev'
@@ -11,6 +12,22 @@ let connection = mysql.createConnection({
 
 
 let controllers = {
+
+    testDb(req,res) {
+        connection.connect();
+        let sql = "select article_id from t_article";
+        connection.query(sql,function(error , result){
+            if(error){
+                console.log('error');
+                res.send("数据库操作失败");
+            }else{
+                res.send(result);
+            }
+            console.log('查询结束');    
+        });
+        console.log('连接结束');
+        connection.end();
+    },
 
     test(req, res) {
         console.log(req.body.name);
