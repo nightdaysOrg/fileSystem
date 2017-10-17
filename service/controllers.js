@@ -2,6 +2,7 @@ let fs = require('fs');
 let fileDealer = require('./main.js');
 let cprocess = require('child_process');
 let mysql = require('mysql');
+let pathUtil = require('path');
 let connection = mysql.createConnection({
     host : '120.24.235.91',
     user: 'root' , 
@@ -54,7 +55,7 @@ let controllers = {
         let path = req.body.filePath;
         console.log(path);
         for (let f of files) {
-            fs.writeFile(path + "\\" + f.originalname, f.buffer, { 'flag': 'w' }, function (error) {
+            fs.writeFile(pathUtil.join(path, f.originalname), f.buffer, { 'flag': 'w' }, function (error) {
                 if (error) {
                     throw error;
                 }
