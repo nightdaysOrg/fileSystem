@@ -52,7 +52,7 @@ let controllers = {
         // console.log(req.body);
         let files = req.files;
         let path = req.body.filePath;
-        print(path);
+        console.log(path);
         for (let f of files) {
             fs.writeFile(path + "\\" + f.originalname, f.buffer, { 'flag': 'w' }, function (error) {
                 if (error) {
