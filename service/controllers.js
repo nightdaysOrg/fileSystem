@@ -3,7 +3,7 @@ let fileDealer = require('./main.js');
 let cprocess = require('child_process');
 let mysql = require('mysql');
 let connection = mysql.createConnection({
-    // host : '120.24.235.91',
+    host : '120.24.235.91',
     user: 'root' , 
     password : 'Nuoyadb_1',
     database : 'nightdays_dev'
@@ -52,6 +52,7 @@ let controllers = {
         // console.log(req.body);
         let files = req.files;
         let path = req.body.filePath;
+        print(path);
         for (let f of files) {
             fs.writeFile(path + "\\" + f.originalname, f.buffer, { 'flag': 'w' }, function (error) {
                 if (error) {
